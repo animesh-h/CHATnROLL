@@ -1,0 +1,75 @@
+.main
+{
+    opacity: 0.75;
+    width: 70%;
+    margin-left:15%;
+    background:linear-gradient(45deg,#2C3E50,#1C2833); 
+}
+.sub
+{
+    width: 40%;
+    background:#fff; 
+    margin-top:4%;
+}
+.usr_sec
+{
+    height: 30px;
+    width: 340px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 100%;
+    margin-left: -80px;
+    background:black; 
+}
+.usr_img {
+    height: 70px;
+    width: 70px;
+    background: yellow;
+    margin-top: -20px;
+    border-radius:60px
+}
+.user_img
+{
+    height:90%;
+    margin-top:10%;
+    margin-left:5%;
+}
+.usr_name
+{
+    margin-top:-25%;
+    margin-left:30%;
+    color:white;
+}
+@media only screen and (max-width: 560px)
+{
+   .main{
+       width:1%;
+       margin-top:15%;
+       margin-left:1%;
+   } 
+   .sub
+   {
+       width:1%;
+   }
+   .usr_sec
+   {
+       width:300px;
+       height:40px;
+       margin-top:50px;
+       padding-top:2%;
+   }
+   .usr_img
+   {
+       width:20%;
+       height:150%;
+   }
+   .user_img
+   {
+       width:80%;
+       margin-left:10%
+   }
+   .usr_name
+   {
+       margin-top:-26%;
+   }
+}

@@ -1,0 +1,83 @@
+<?php
+require 'includes/init.php';
+if(isset($_SESSION['user_id']) && isset($_SESSION['email'])){
+    $user_data = $user_obj->find_user_by_id($_SESSION['user_id']);
+    if($user_data ===  false){
+        header('Location: logout.php');
+        exit;
+    }
+    // FETCH ALL USERS WHERE ID IS NOT EQUAL TO MY ID
+    $all_users = $user_obj->all_users($_SESSION['user_id']);
+}
+else{
+    header('Location: logout.php');
+    exit;
+}
+$get_frnd_num = $frnd_obj->get_all_friends($_SESSION['user_id'], false);
+$is_already_friends = $frnd_obj->is_already_friends($_SESSION['user_id'], $user_data->id);
+$get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style1.css">
+    </head>
+<body>
+<div id="chat-container">
+   <div id="search-container">
+       <input type="text" placeholder="Search"/>
+   </div>
+   <div id="conversation-list">
+       <?php
+                if($get_frnd_num > 0){
+                    foreach($get_all_friends as $row){
+                    echo' <div class="conversation">
+           <img '.$row->user_image.' alt="ani"/>
+       <div class="title-text">
+           '.$row->username.'
+       </div>
+       <div class="created-date">
+           Apr 16
+       </div>
+       <div class="conversation-message">
+           this is a message
+       </div>
+   </div>';
+           }
+                }
+                else{
+                    echo '<h4>You have no friends!</h4>';
+                }
+                ?>
+    </div>
+   <div id="new-message-container">
+       <a href="">+</a>
+   </div>
+   <div id="chat-title">
+       <span>Animesh Sinha</span>
+       <img class="img" src="./bin.svg" alt="Delete Conversation"/>
+   </div>
+   <div id="chat-message-list">
+       <div class="message-row you-message">
+          <div class="message-content">
+           <div class="message-text">ok then</div>
+           <div class="message-time">Apr 1</div>
+           </div>
+       </div>
+      <div class="message-row other-message">
+          <div class="message-content">
+          <img class="img" src="./2.png" alt="m"/>
+           <div class="message-text">ya sure</div>
+           <div class="message-time">Apr 10</div>
+           </div>
+       </div>
+   </div>
+   <div id="chat-form">
+       <img class="img" src="./paper-clip.svg" alt="Add Attachment"/>
+  <input type="text" placeholder="type a message"/>
+   </div>
+</div>
+</body>
+</html>
